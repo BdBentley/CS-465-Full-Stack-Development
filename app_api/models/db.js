@@ -1,20 +1,22 @@
 const mongoose = require('mongoose');
 const host = process.env.DB_HOST || '127.0.0.1'
-const dbURI = 'mongodb://${host}/travlr';
+const conn_uri = `mongodb://${host}/travlr`;
 const readLine = require('readline');
+
+const {seed} = require('./seed');
 
 // avoid 'current server discovery and monitoring enginer is deprecated'
 mongoose.set('useUnifiedTopology', true);
 
 const connect = () => {
-    setTimeout(() => mongoose.connect(dbURI, {
+    setTimeout(() => mongoose.connect(conn_uri, {
         useNewUrlParser: true,
         useCreateIndex: true
     }), 1000);
 }
 
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose connected to ${dbURI}`);
+    console.log(`Mongoose connected to ${conn_uri}`);
 });                           
 
 mongoose.connection.on('error', err => {
@@ -57,7 +59,7 @@ process.on('SIGTERM', ()=> {
 });
 
 async function main() {
-    await mongoose.connect(conn uri);
+    await mongoose.connect(conn_uri);
     await seed();
 }
 

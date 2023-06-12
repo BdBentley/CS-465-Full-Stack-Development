@@ -3,16 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TripListingComponent } from './trip-listing/trip-listing.component';
+import { TripCardComponent } from './trip-card/trip-card.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TripsService } from './services/trips.service';
+import { AddTripComponent } from './add-trip/add-trip.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditTripComponent } from './edit-trip/edit-trip.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TripListingComponent,
+    TripCardComponent,
+    AddTripComponent,
+    EditTripComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TripsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
